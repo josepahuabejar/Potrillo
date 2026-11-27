@@ -321,3 +321,37 @@ if (!reduce) {
     onUpdate: s => { const v = gsap.utils.clamp(-14, 14, s.getVelocity() / 120); gsap.to(flags, { rotationX: Math.abs(v) * 2.5, skewX: v, duration: 0.4, stagger: 0.02, overwrite: 'auto' }); gsap.to(flags, { rotationX: 0, skewX: 0, duration: 1.4, delay: 0.4, ease: 'elastic.out(1, .4)', overwrite: false }); } });
 }
 }
+
+/* ---------- order chooser ---------- */
+{
+  const dlg = document.getElementById('order');
+  if (dlg && dlg.showModal) {
+    const cfg = window.POTRILLO || {};
+    const opt = k => dlg.querySelector(`[data-opt="${k}"]`);
+    if (cfg.doordash) opt('doordash').href = cfg.doordash; else opt('doordash').hidden = true;
+    if (cfg.ubereats) { opt('ubereats').href = cfg.ubereats; opt('ubereats').hidden = false; }
+    if (cfg.callbackEndpoint) opt('callback').hidden = false;
+    const form = document.getElementById('cbform'), msg = form.querySelector('.order__msg');
+    document.addEventListener('click', e => {
+      const a = e.target.closest('[data-order]');
+      if (!a) return;
+      e.preventDefault();
+      if (typeof closeSheet === 'function') closeSheet();
+      form.hidden = true; msg.textContent = '';
+      dlg.showModal();
+    });
+    dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+    opt('callback').addEventListener('click', () => { form.hidden = false; form.name.focus(); });
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      if (form.website.value) return;
+      msg.textContent = 'Sending…';
+      try {
+        const r = await fetch(cfg.callbackEndpoint, { method: 'POST', headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name: form.name.value, phone: form.phone.value, note: form.note.value, source: 'potrillo-site callback' }) });
+        if (!r.ok) throw 0;
+        form.reset(); msg.textContent = 'Thank you! We will call you shortly.';
+      } catch { msg.textContent = 'Sorry, that did not send. Please call (336) 350-7021.'; }
+    });
+  }
+}

@@ -33,7 +33,7 @@
     </nav>
     <div class="nav__cta">
       <a class="btn btn--ghost" href="tel:+13363507021">Call</a>
-      <a class="btn" href="https://www.doordash.com/search/store/el%20potrillo%20cocina%20mexicana/" target="_blank" rel="noopener">Order online</a>
+      <a data-order class="btn" href="https://www.doordash.com/search/store/el%20potrillo%20cocina%20mexicana/" target="_blank" rel="noopener">Order online</a>
     </div>
     <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="sheet" aria-label="Open menu"><span></span><span></span></button>
   </div>
@@ -44,7 +44,7 @@
   <a href="#menu">Menu</a>
   <a href="#cantina">Cantina</a>
   <a href="#visit">Visit</a>
-  <a class="btn" href="https://www.doordash.com/search/store/el%20potrillo%20cocina%20mexicana/" target="_blank" rel="noopener">Order online</a>
+  <a data-order class="btn" href="https://www.doordash.com/search/store/el%20potrillo%20cocina%20mexicana/" target="_blank" rel="noopener">Order online</a>
   <a class="btn btn--cream" href="tel:+13363507021">Call (336) 350-7021</a>
 </div>
 
@@ -70,13 +70,13 @@
           <dt>Friday and Saturday</dt><dd>11 am to 1:30 am</dd>
         </dl>
         <div class="btn-row">
-          <a class="btn" href="https://www.doordash.com/search/store/el%20potrillo%20cocina%20mexicana/" target="_blank" rel="noopener">Order online <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a data-order class="btn" href="https://www.doordash.com/search/store/el%20potrillo%20cocina%20mexicana/" target="_blank" rel="noopener">Order online <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
           <a class="btn btn--ghost" href="#menu">See the menu</a>
         </div>
       </div>
       <div class="hero__meta" id="heroMeta">
         <p>Cocina mexicana · 3409 South Church Street, Burlington, NC</p>
-        <div class="hero__go"><a class="btn" href="https://www.doordash.com/search/store/el%20potrillo%20cocina%20mexicana/" target="_blank" rel="noopener">Order online</a><a class="btn btn--ghost" href="#menu">See the menu</a></div>
+        <div class="hero__go"><a data-order class="btn" href="https://www.doordash.com/search/store/el%20potrillo%20cocina%20mexicana/" target="_blank" rel="noopener">Order online</a><a class="btn btn--ghost" href="#menu">See the menu</a></div>
         <span class="hint">Scroll to walk up <i aria-hidden="true"></i></span>
       </div>
     </div>
@@ -175,7 +175,7 @@
           <input id="q" type="search" placeholder="Search: birria, shrimp, mole…" autocomplete="off">
         </div>
       </div>
-      <p class="menu__order"><span>Hungry now? Order pickup or delivery online, no phone call needed.</span><a class="btn" href="https://www.doordash.com/search/store/el%20potrillo%20cocina%20mexicana/" target="_blank" rel="noopener">Order online <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>
+      <p class="menu__order"><span>Hungry now? Order pickup or delivery online, no phone call needed.</span><a data-order class="btn" href="https://www.doordash.com/search/store/el%20potrillo%20cocina%20mexicana/" target="_blank" rel="noopener">Order online <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>
       <div class="chips"><div class="chips__row" id="chips" role="navigation" aria-label="Menu sections"></div></div>
       <div id="menuList"></div>
       <p class="menu__fine">Consuming raw or undercooked eggs, meats, or other ingredients may increase the risk of foodborne illness, especially for individuals with certain medical conditions. ★ marks a house favorite.</p>
@@ -245,9 +245,37 @@
 <nav class="bar" id="bar" aria-label="Quick actions">
   <a class="btn btn--ghost bar__call" href="tel:+13363507021">Call</a>
   <a class="btn btn--ghost" href="#menu">Menu</a>
-  <a class="btn" href="https://www.doordash.com/search/store/el%20potrillo%20cocina%20mexicana/" target="_blank" rel="noopener">Order online</a>
+  <a data-order class="btn" href="https://www.doordash.com/search/store/el%20potrillo%20cocina%20mexicana/" target="_blank" rel="noopener">Order online</a>
 </nav>
 
+
+<dialog class="order" id="order" aria-labelledby="order-h">
+  <form method="dialog"><button class="order__x" aria-label="Close">&times;</button></form>
+  <h2 id="order-h">How would you like to order?</h2>
+  <div class="order__list">
+    <a class="order__opt" data-opt="doordash" href="#" target="_blank" rel="noopener"><b>DoorDash</b><span>Pickup or delivery</span></a>
+    <a class="order__opt" data-opt="ubereats" href="#" target="_blank" rel="noopener" hidden><b>Uber Eats</b><span>Pickup or delivery</span></a>
+    <a class="order__opt" href="tel:+13363507021"><b>Call us</b><span>(336) 350-7021, pickup ready when you arrive</span></a>
+    <button class="order__opt" type="button" data-opt="callback" hidden><b>Prefer not to call?</b><span>Leave your number and we'll call you</span></button>
+    <a class="order__opt" href="https://www.ezcater.com/catering/el-potrillo-cocina-mexicana-3" target="_blank" rel="noopener"><b>Catering</b><span>Orders for groups, via ezCater</span></a>
+  </div>
+  <form class="order__form" id="cbform" hidden>
+    <label>Your name<input name="name" required autocomplete="name"></label>
+    <label>Phone number<input name="phone" type="tel" required autocomplete="tel" inputmode="tel"></label>
+    <label>What would you like? (optional)<textarea name="note" rows="3"></textarea></label>
+    <input name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
+    <button class="btn" type="submit">Request a call back</button>
+    <p class="order__msg" role="status" aria-live="polite"></p>
+  </form>
+</dialog>
+<script>
+/* ORDER SETTINGS: fill these in as they become available. Empty = that option stays hidden. */
+window.POTRILLO = {
+  doordash: "https://www.doordash.com/search/store/el%20potrillo%20cocina%20mexicana/",
+  ubereats: "",      /* paste the Uber Eats store link once approved */
+  callbackEndpoint: "" /* paste a Formspree/Basin form URL (https://formspree.io/f/xxxx) to turn on "call me back" */
+};
+</script>
 <script src="js/gsap.min.js"></script>
 <script src="js/ScrollTrigger.min.js"></script>
 <script src="js/SplitText.min.js"></script>

@@ -337,3 +337,21 @@ button { font: inherit; color: inherit; }
 .hero__go { display: flex; gap: 10px; color: var(--cream); }
 @media (min-width: 900px) { .hero__go { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); } }
 @media (max-width: 899px) { .hero__meta { flex-direction: column; align-items: stretch; gap: 14px; } .hero__go .btn { flex: 1; } .hero__meta .hint { align-self: center; } }
+
+/* ---------- order chooser ---------- */
+.order { border: 0; padding: 28px; border-radius: 20px; width: min(460px, calc(100vw - 24px)); background: var(--paper); color: var(--ink); box-shadow: 0 30px 80px -20px rgba(0,0,0,.6); }
+.order::backdrop { background: rgba(26,22,18,.65); backdrop-filter: blur(3px); }
+.order h2 { font: 800 clamp(28px, 7vw, 38px)/1 var(--display); text-transform: uppercase; margin: 0 28px 18px 0; }
+.order__x { position: absolute; top: 12px; right: 14px; border: 0; background: none; font-size: 30px; line-height: 1; cursor: pointer; color: var(--ink); }
+.order__list { display: grid; gap: 10px; }
+.order__opt { display: grid; gap: 2px; text-align: left; text-decoration: none; color: var(--ink); background: var(--cream); border: 0; border-radius: 14px; padding: 14px 16px; font: inherit; cursor: pointer; transition: background .2s, transform .2s; }
+.order__opt:first-child { background: var(--chile); color: var(--paper); }
+.order__opt:hover { transform: translateY(-1px); background: #fff; color: var(--ink); }
+.order__opt:first-child:hover { background: var(--chile-2); color: var(--paper); }
+.order__opt b { font-weight: 700; font-size: 17px; } .order__opt span { font-size: 14px; opacity: .8; }
+.order__opt[hidden], .order__form[hidden] { display: none; }
+.order__form { display: grid; gap: 12px; margin-top: 16px; }
+.order__form label { display: grid; gap: 4px; font-size: 14px; font-weight: 600; }
+.order__form input, .order__form textarea { font: inherit; padding: 12px; border-radius: 10px; border: 1.5px solid rgba(26,22,18,.25); background: #fff; }
+.order__form .hp { position: absolute; left: -9999px; }
+.order__msg { margin: 0; font-size: 14px; min-height: 1.2em; }
