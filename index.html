@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El Potrillo Cocina Mexicana · Burlington, NC</title>
+<meta name="description" content="Mexican kitchen and bar at 3409 South Church Street, Burlington, NC. Molcajete, quesabirria tacos, fajitas, seafood and margaritas. Open Tuesday to Sunday from 11 am, until 1:30 am on Fridays and Saturdays.">
+<meta property="og:title" content="El Potrillo Cocina Mexicana, Burlington NC">
+<meta property="og:description" content="Molcajete, quesabirria, fajitas la Loma and margaritas on South Church Street.">
+<meta property="og:image" content="img/storefront.jpg">
+<meta name="theme-color" content="#1d3631">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/big-shoulders-display-latin-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/site.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Restaurant","name":"El Potrillo Cocina Mexicana","servesCuisine":"Mexican","priceRange":"$$","telephone":"+1-336-350-7021",
+"address":{"@type":"PostalAddress","streetAddress":"3409 S Church St","addressLocality":"Burlington","addressRegion":"NC","postalCode":"27215","addressCountry":"US"},
+"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Tuesday","Wednesday","Thursday","Sunday"],"opens":"11:00","closes":"22:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Friday","Saturday"],"opens":"11:00","closes":"01:30"}],
+"hasMenu":"#menu","acceptsReservations":false,"image":"img/storefront.jpg"}
+</script>
+</head>
+<body>
+<a class="skip" href="#casa">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="wrap nav__bar">
+    <a class="brand" href="#top" aria-label="El Potrillo, back to top"><span class="horse" aria-hidden="true"></span>El Potrillo</a>
+    <nav class="nav__links" aria-label="Main">
+      <a href="#mesa">La mesa</a>
+      <a href="#menu">Menu</a>
+      <a href="#cantina">Cantina</a>
+      <a href="#visit">Visit</a>
+    </nav>
+    <div class="nav__cta">
+      <a class="btn btn--ghost" href="tel:+13363507021">Call</a>
+      <a class="btn" href="https://www.doordash.com/search/store/el%20potrillo%20cocina%20mexicana/" target="_blank" rel="noopener">Order online</a>
+    </div>
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="sheet" aria-label="Open menu"><span></span><span></span></button>
+  </div>
+</header>
+<div class="sheet" id="sheet" aria-hidden="true">
+  <button class="sheet__close" type="button" aria-label="Close menu">&times;</button>
+  <a href="#mesa">La mesa</a>
+  <a href="#menu">Menu</a>
+  <a href="#cantina">Cantina</a>
+  <a href="#visit">Visit</a>
+  <a class="btn" href="https://www.doordash.com/search/store/el%20potrillo%20cocina%20mexicana/" target="_blank" rel="noopener">Order online</a>
+  <a class="btn btn--cream" href="tel:+13363507021">Call (336) 350-7021</a>
+</div>
+
+<!-- ORDER LINKS: every "Order online" button uses the same URL. Replace the DoorDash search link with the restaurant's own DoorDash store or Storefront link (find/replace). -->
+<main>
+  <!-- HERO: the client's own walk-up film, scrubbed by scroll inside an arched window -->
+  <section class="hero" id="top" aria-label="El Potrillo Cocina Mexicana">
+    <div class="hero__stage">
+      <div class="tile-bg" aria-hidden="true"></div>
+      <p class="hero__word" aria-hidden="true"><span class="hero__big"><span class="hero__el es">El</span><span id="bigword">Potrillo</span></span></p>
+      <div class="arch" id="arch">
+        <canvas id="walkup" aria-hidden="true"></canvas>
+        <div class="arch__glow" aria-hidden="true"></div>
+        <div class="arch__scrim" id="scrim" aria-hidden="true"></div>
+      </div>
+      <div class="hero__side hero__side--l" id="sideL">
+        <h1><span class="es">Pásale.</span>Cocina mexicana</h1>
+        <p>A Mexican kitchen and bar on South Church Street in Burlington. Molcajetes, birria tacos, fajitas and margaritas.</p>
+      </div>
+      <div class="hero__side hero__side--r" id="sideR">
+        <dl>
+          <dt>Tuesday to Thursday, Sunday</dt><dd>11 am to 10 pm</dd>
+          <dt>Friday and Saturday</dt><dd>11 am to 1:30 am</dd>
+        </dl>
+        <div class="btn-row">
+          <a class="btn" href="https://www.doordash.com/search/store/el%20potrillo%20cocina%20mexicana/" target="_blank" rel="noopener">Order online <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a class="btn btn--ghost" href="#menu">See the menu</a>
+        </div>
+      </div>
+      <div class="hero__meta" id="heroMeta">
+        <p>Cocina mexicana · 3409 South Church Street, Burlington, NC</p>
+        <div class="hero__go"><a class="btn" href="https://www.doordash.com/search/store/el%20potrillo%20cocina%20mexicana/" target="_blank" rel="noopener">Order online</a><a class="btn btn--ghost" href="#menu">See the menu</a></div>
+        <span class="hint">Scroll to walk up <i aria-hidden="true"></i></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADENTRO: the door opens, scroll walks you inside -->
+  <section class="enter" id="adentro" aria-label="Inside El Potrillo">
+    <div class="enter__stage">
+      <canvas id="inside" aria-hidden="true"></canvas>
+      <div class="enter__shade" aria-hidden="true"></div>
+      <div class="enter__text" id="enterText">
+        <span class="eyebrow">Adentro</span>
+        <h2><span class="es">Pásale,</span> la mesa está lista.</h2>
+      </div>
+    </div>
+  </section>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__track" id="ticker">
+      <span class="ticker__item">Molcajete</span><span class="ticker__item">Quesabirria</span><span class="ticker__item">Fajitas la Loma</span><span class="ticker__item">Shrimp cocktail</span><span class="ticker__item">Margaritas</span><span class="ticker__item">Carne asada</span><span class="ticker__item">Enchiladas de mole</span><span class="ticker__item">Tres leches</span>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <section class="intro" id="casa" aria-labelledby="casa-h">
+    <div class="wrap intro__grid">
+      <div>
+        <span class="eyebrow" id="casa-h">La casa</span>
+        <p class="intro__text" id="introText">Molcajetes come to the table in the stone. Birria tacos arrive with their broth, fajitas still sizzling, shrimp cocktail cold and bright with lime. And on Fridays and Saturdays the bar pours margaritas until 1:30 in the morning.</p>
+        <div class="intro__facts">
+          <span class="chip">Dine in and out front</span><span class="chip">Takeout</span><span class="chip">Catering</span><span class="chip">Full bar</span><span class="chip">Lunch from $9.50</span>
+        </div>
+      </div>
+      <div class="medal-wrap" aria-hidden="true">
+        <div class="medal" id="medal">
+          <div class="medal__face"><span class="horse"></span>
+            <svg class="medal__ring" viewBox="0 0 200 200"><defs><path id="circ" d="M100 100m-82 0a82 82 0 1 1 164 0a82 82 0 1 1-164 0"/></defs><text><textPath href="#circ">Cocina mexicana ✶ Burlington, NC ✶ South Church St ✶</textPath></text></svg>
+          </div>
+          <div class="medal__face medal__face--back"><div class="medal__back">El<br>Potrillo<span class="es">cocina mexicana</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LA MESA: the plates on a turning table -->
+  <section class="mesa" id="mesa" aria-labelledby="mesa-h">
+    <div class="mesa__stage">
+      <div class="wrap mesa__head">
+        <div><span class="eyebrow">From the kitchen</span><h2 id="mesa-h"><span class="es">La mesa</span>The house plates</h2></div>
+        <p>Scroll, drag or use the arrows to turn the table.</p>
+      </div>
+      <div class="ring-wrap" id="ringWrap" aria-roledescription="carousel" aria-label="House plates">
+        <div class="ring" id="ring"></div>
+      </div>
+      <div class="wrap mesa__foot">
+        <div class="dish" aria-live="polite">
+          <h3 class="dish__name" id="dishName">Molcajete El Potrillo</h3>
+          <p class="dish__desc" id="dishDesc"></p>
+          <div class="dots" id="dots"></div>
+        </div>
+        <div class="mesa__nav">
+          <button class="round" type="button" id="prev" aria-label="Previous plate"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M16 10H4M8 5l-5 5 5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button class="round" type="button" id="next" aria-label="Next plate"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12M12 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LUNCH -->
+  <section class="lunch" id="lunch" aria-labelledby="lunch-h">
+    <div class="wrap lunch__grid">
+      <div>
+        <span class="eyebrow">Lunch specials · 11 am to 3 pm</span>
+        <h2 id="lunch-h">Lunch from <span class="num">$<span id="lunchNum">9.50</span></span></h2>
+        <p>Chimichangas, fajitas, rice plates and combinations at lunch prices, served from 11 am to 3 pm.</p>
+      </div>
+      <ul>
+        <li><span>Chimichanga</span><b>$9.50</b></li>
+        <li><span>Lunch combination, one item</span><b>$9.95</b></li>
+        <li><span>Quesadilla rellena</span><b>$10.50</b></li>
+        <li><span>Huevos al gusto</span><b>$10.99</b></li>
+        <li><span>Lunch fajitas</span><b>from $11.99</b></li>
+        <li><span>Arroz Texano</span><b>$13.95</b></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section class="menu" id="menu" aria-labelledby="menu-h">
+    <div class="wrap">
+      <div class="menu__head">
+        <div><span class="eyebrow">Full menu, prices as printed</span><h2 id="menu-h"><span class="es">El menú</span>Menu</h2></div>
+        <div class="search">
+          <label for="q">Search the menu</label>
+          <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="9" cy="9" r="6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M14 14l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <input id="q" type="search" placeholder="Search: birria, shrimp, mole…" autocomplete="off">
+        </div>
+      </div>
+      <p class="menu__order"><span>Hungry now? Order pickup or delivery online, no phone call needed.</span><a class="btn" href="https://www.doordash.com/search/store/el%20potrillo%20cocina%20mexicana/" target="_blank" rel="noopener">Order online <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>
+      <div class="chips"><div class="chips__row" id="chips" role="navigation" aria-label="Menu sections"></div></div>
+      <div id="menuList"></div>
+      <p class="menu__fine">Consuming raw or undercooked eggs, meats, or other ingredients may increase the risk of foodborne illness, especially for individuals with certain medical conditions. ★ marks a house favorite.</p>
+    </div>
+  </section>
+
+  <!-- CANTINA -->
+  <section class="cantina" id="cantina" aria-labelledby="cantina-h">
+    <div class="picado" id="picado" aria-hidden="true"></div>
+    <div class="tile-bg" aria-hidden="true"></div>
+    <div class="wrap cantina__grid">
+      <figure class="cantina__photo" style="margin:0"><img id="margImg" src="img/margaritas.webp" alt="Three margaritas with sugared rims, orange and lime, and a frozen piña drink with whipped cream on the granite bar" loading="lazy"></figure>
+      <div>
+        <span class="eyebrow">The bar</span>
+        <h2 id="cantina-h"><span class="es">La cantina</span>Margaritas</h2>
+        <p>A full bar under the paintings and the star tiles. On Fridays and Saturdays it stays open until 1:30 am.</p>
+        <ul class="drinks">
+          <li><span>Aguas frescas</span><span>Horchata · Jamaica · Piña</span></li>
+          <li><span>Jarritos</span><span>Tamarindo · Piña</span></li>
+          <li><span>Mexican Coca-Cola</span><span>In the glass bottle</span></li>
+          <li><span>Margaritas</span><span>On the rocks or frozen</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISIT -->
+  <section class="visit" id="visit" aria-labelledby="visit-h">
+    <div class="wrap visit__grid">
+      <a class="visit__photo" href="https://www.google.com/maps/dir/?api=1&amp;destination=El%20Potrillo%20Cocina%20Mexicana%2C%203409%20S%20Church%20St%2C%20Burlington%2C%20NC%2027215" target="_blank" rel="noopener" aria-label="Directions to the restaurant">
+        <img src="img/storefront.jpg" alt="El Potrillo's storefront on South Church Street: the horse sign over a green awning, with tables out front" loading="lazy">
+      </a>
+      <div>
+        <span class="eyebrow">Visit</span>
+        <h2 id="visit-h">Find us</h2>
+        <p class="visit__addr">3409 South Church Street<br>Burlington, NC 27215</p>
+        <span class="status" id="status"><i></i><span>Hours</span></span>
+        <dl class="hours" id="hours">
+          <dt data-d="2">Tuesday</dt><dd>11 am – 10 pm</dd>
+          <dt data-d="3">Wednesday</dt><dd>11 am – 10 pm</dd>
+          <dt data-d="4">Thursday</dt><dd>11 am – 10 pm</dd>
+          <dt data-d="5">Friday</dt><dd>11 am – 1:30 am</dd>
+          <dt data-d="6">Saturday</dt><dd>11 am – 1:30 am</dd>
+          <dt data-d="0">Sunday</dt><dd>11 am – 10 pm</dd>
+          <dt data-d="1">Monday</dt><dd>Closed</dd>
+        </dl>
+        <div class="btn-row">
+          <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=El%20Potrillo%20Cocina%20Mexicana%2C%203409%20S%20Church%20St%2C%20Burlington%2C%20NC%2027215" target="_blank" rel="noopener">Get directions <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a class="btn btn--ghost" href="tel:+13363507021">Call (336) 350-7021</a>
+        </div>
+        <p class="visit__extra">Dine in, tables out front, or takeout. <a href="https://www.doordash.com/search/store/el%20potrillo%20cocina%20mexicana/" target="_blank" rel="noopener">Order pickup online</a> or call ahead. Feeding a group? <a href="https://www.ezcater.com/catering/el-potrillo-cocina-mexicana-3" target="_blank" rel="noopener">Order catering on ezCater</a>.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p class="foot__big" aria-hidden="true"><span class="horse"></span>El Potrillo</p>
+    <div class="foot__row">
+      <span>© 2026 El Potrillo Cocina Mexicana · 3409 S Church St, Burlington, NC</span>
+      <span><a href="tel:+13363507021">(336) 350-7021</a> · <a href="#top">Back to top</a></span>
+    </div>
+  </div>
+</footer>
+
+<nav class="bar" id="bar" aria-label="Quick actions">
+  <a class="btn btn--ghost bar__call" href="tel:+13363507021">Call</a>
+  <a class="btn btn--ghost" href="#menu">Menu</a>
+  <a class="btn" href="https://www.doordash.com/search/store/el%20potrillo%20cocina%20mexicana/" target="_blank" rel="noopener">Order online</a>
+</nav>
+
+<script src="js/gsap.min.js"></script>
+<script src="js/ScrollTrigger.min.js"></script>
+<script src="js/SplitText.min.js"></script>
+<script src="js/lenis.min.js"></script>
+<script src="js/menu.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
