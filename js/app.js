@@ -130,12 +130,19 @@ if (tick) {
 /* ---------- intro words + medal ---------- */
 const introP = $('#introText');
 const hl = /^(molcajetes|birria|fajitas|shrimp|margaritas|1:30)/i;
-introP.innerHTML = introP.textContent.split(' ').map(w => `<span class="w${hl.test(w) ? ' hl' : ''}">${w}</span>`).join(' ');
-const words = $$('.w', introP);
+const introEN = introP.textContent;
+let words = [];
+function setIntro() {
+  const text = I18N.msg('intro') || introEN;
+  introP.innerHTML = text.split(' ').map(w => `<span class="w${hl.test(w) ? ' hl' : ''}">${w}</span>`).join(' ');
+  words = $$('.w', introP);
+  if (reduce) words.forEach(w => w.classList.add('on'));
+}
+setIntro();
 if (!reduce) {
   ScrollTrigger.create({ trigger: introP, start: 'top 82%', end: 'bottom 50%', scrub: true,
     onUpdate: s => { const n = Math.round(s.progress * words.length); words.forEach((w, i) => w.classList.toggle('on', i < n)); } });
-} else words.forEach(w => w.classList.add('on'));
+}
 
 const medal = $('#medal');
 for (let i = 0; i < 16; i++) {
@@ -182,7 +189,7 @@ function sizeRing() {
 let scrollA = 0, dragA = 0, curA = 0, front = -1;
 function setDish(i) {
   if (i === front) return; front = i;
-  const p = PLATES[i];
+  const p = I18N.plate(PLATES[i], i);
   const nameEl = $('#dishName'), descEl = $('#dishDesc');
   const swap = () => { nameEl.innerHTML = `${p.name}<span class="dish__price">${p.price}</span>`; descEl.textContent = p.desc; };
   if (reduce) swap();
@@ -237,7 +244,8 @@ if (!reduce) {
 /* ---------- menu ---------- */
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const list = $('#menuList'), chipsRow = $('#chips'), q = $('#q');
-chipsRow.innerHTML = MENU.map(c => `<button type="button" data-cat="${c.id}">${esc(c.name)}</button>`).join('');
+const renderChips = () => { chipsRow.innerHTML = MENU.map(c => `<button type="button" data-cat="${c.id}">${esc(I18N.menuCat(c).name)}</button>`).join(''); };
+renderChips();
 function mark(text, term) {
   const t = esc(text);
   if (!term) return t;
@@ -249,13 +257,14 @@ function renderMenu(term = '') {
   term = term.trim().toLowerCase();
   let count = 0;
   const html = MENU.map(c => {
-    const items = c.items.filter(it => !term || (it.n + ' ' + it.d + ' ' + c.name).toLowerCase().includes(term));
+    const cat = I18N.menuCat(c);
+    const items = c.items.map((it, i) => ({ ...it, ...I18N.item(c, it, i) })).filter(it => !term || (it.n + ' ' + it.d + ' ' + cat.name).toLowerCase().includes(term));
     if (!items.length) return '';
     count += items.length;
-    return `<section class="cat" id="m-${c.id}" aria-labelledby="h-${c.id}"><h3 id="h-${c.id}">${esc(c.name)} <small>${items.length} ${items.length === 1 ? 'dish' : 'dishes'}</small></h3>${c.note && !term ? `<p class="cat__note">${esc(c.note)}</p>` : ''}<div class="items">` +
-      items.map(it => `<article class="item"><div class="item__top"><span class="item__name">${mark(it.n, term)}</span>${it.star ? '<span class="item__star">★ house favorite</span>' : ''}<span class="item__dots"></span>${it.p ? `<span class="item__price">${it.p === 'MP' ? 'Market' : '$' + esc(it.p)}</span>` : ''}</div><p class="item__desc">${mark(it.d, term)}</p></article>`).join('') + '</div></section>';
+    return `<section class="cat" id="m-${c.id}" aria-labelledby="h-${c.id}"><h3 id="h-${c.id}">${esc(cat.name)} <small>${items.length} ${items.length === 1 ? (I18N.msg('dish') || 'dish') : (I18N.msg('dishes') || 'dishes')}</small></h3>${cat.note && !term ? `<p class="cat__note">${esc(cat.note)}</p>` : ''}<div class="items">` +
+      items.map(it => `<article class="item"><div class="item__top"><span class="item__name">${mark(it.n, term)}</span>${it.star ? `<span class="item__star">${I18N.msg('fav') || '★ house favorite'}</span>` : ''}<span class="item__dots"></span>${it.p ? `<span class="item__price">${it.p === 'MP' ? (I18N.msg('market') || 'Market') : '$' + esc(it.p)}</span>` : ''}</div><p class="item__desc">${mark(it.d, term)}</p></article>`).join('') + '</div></section>';
   }).join('');
-  list.innerHTML = html || `<p class="menu__empty">Nothing on the menu matches “${esc(term)}”. Try shrimp, steak, birria or vegetarian.</p>`;
+  list.innerHTML = html || `<p class="menu__empty">${esc(I18N.es ? I18N.ES.msg.empty(term) : `Nothing on the menu matches “${term}”. Try shrimp, steak, birria or vegetarian.`)}</p>`;
   $$('button', chipsRow).forEach(b => { b.hidden = !!term && !$('#m-' + b.dataset.cat); });
   setupSpy();
   ScrollTrigger.refresh();
@@ -294,7 +303,7 @@ if (!reduce) {
 }
 
 /* open now, in Burlington's time */
-(function status() {
+function status() {
   const parts = new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', weekday: 'short', hour: 'numeric', minute: 'numeric', hourCycle: 'h23' }).formatToParts(new Date());
   const get = t => parts.find(p => p.type === t)?.value;
   const d = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(get('weekday'));
@@ -305,10 +314,12 @@ if (!reduce) {
   if ([6, 0].includes(d) && m < 90) { open = true; until = '1:30 am'; }
   const el = $('#status');
   el.classList.toggle('open', open);
-  el.lastElementChild.textContent = open ? `Open now · until ${until}` : (d === 1 || (d === 0 && m >= 1320) ? 'Closed today · opens Tuesday at 11 am' : (m < 660 ? 'Opens today at 11 am' : 'Closed now · opens tomorrow at 11 am'));
+  const M = I18N.es ? I18N.ES.msg : null;
+  el.lastElementChild.textContent = open ? (M ? M.open(until.replace('1:30 am', '1:30 am')) : `Open now · until ${until}`) : (d === 1 || (d === 0 && m >= 1320) ? (M ? M.closedToday : 'Closed today · opens Tuesday at 11 am') : (m < 660 ? (M ? M.opensToday : 'Opens today at 11 am') : (M ? M.closedNow : 'Closed now · opens tomorrow at 11 am')));
   const row = $(`#hours dt[data-d="${m < 90 && [6, 0].includes(d) ? (d + 6) % 7 : d}"]`);
   if (row) { row.classList.add('today'); row.nextElementSibling.classList.add('today'); }
-})();
+}
+status();
 
 addEventListener('load', () => ScrollTrigger.refresh());
 
@@ -345,13 +356,21 @@ if (!reduce) {
     form.addEventListener('submit', async e => {
       e.preventDefault();
       if (form.website.value) return;
-      msg.textContent = 'Sending…';
+      msg.textContent = I18N.msg('sending') || 'Sending…';
       try {
         const r = await fetch(cfg.callbackEndpoint, { method: 'POST', headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
           body: JSON.stringify({ name: form.name.value, phone: form.phone.value, note: form.note.value, source: 'potrillo-site callback' }) });
         if (!r.ok) throw 0;
-        form.reset(); msg.textContent = 'Thank you! We will call you shortly.';
-      } catch { msg.textContent = 'Sorry, that did not send. Please call (336) 350-7021.'; }
+        form.reset(); msg.textContent = I18N.msg('thanks') || 'Thank you! We will call you shortly.';
+      } catch { msg.textContent = I18N.msg('fail') || 'Sorry, that did not send. Please call (336) 350-7021.'; }
     });
   }
 }
+
+/* ---------- language ---------- */
+document.addEventListener('langchange', () => {
+  setIntro(); renderChips(); renderMenu(q.value); status();
+  const was = front; front = -1; if (reduce) setDish(Math.max(0, was)); // otherwise the ticker re-applies it next frame
+});
+I18N.apply();
+if (I18N.es) { setIntro(); renderChips(); renderMenu(q.value); status(); front = -1; setDish(0); }

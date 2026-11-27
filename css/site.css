@@ -355,3 +355,11 @@ button { font: inherit; color: inherit; }
 .order__form input, .order__form textarea { font: inherit; padding: 12px; border-radius: 10px; border: 1.5px solid rgba(26,22,18,.25); background: #fff; }
 .order__form .hp { position: absolute; left: -9999px; }
 .order__msg { margin: 0; font-size: 14px; min-height: 1.2em; }
+
+/* ---------- language toggle ---------- */
+.lang { min-width: 44px; height: 40px; border-radius: 999px; border: 1.5px solid currentColor; background: transparent; color: inherit; font: 700 14px var(--sans); letter-spacing: .06em; cursor: pointer; margin-left: 10px; }
+.lang:hover { background: rgba(255,255,255,.12); }
+.nav:not(.is-solid) .lang { color: var(--cream); }
+@media (max-width: 899px) { .lang { margin-left: auto; margin-right: 10px; } }
+@media (max-width: 899px) { .nav__toggle { margin-left: 0; } }
+.lang--sheet { position: absolute; top: 18px; left: var(--pad); margin: 0; color: var(--cream); }
